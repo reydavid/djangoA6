@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title></title>
+        <style>
+           tr,thead {
+               display:block;
+               }
+        </style>
+    </head>
+    <body>
+        <h1>Add Post!</h1>
+        <form action="/addpost" method = "POST">
+            {%csrf_token%}
+            <textarea name="post"></textarea>
+            <input type="submit", value="Post">
+        </form>
+        <table>
+            <thead>
+                <th>Post</th>
+                <th>Action</th>
+            </thead>
+
+        {% for post in allPosts %}
+            <tr>
+                <td>{{post.post}}</td>    
+                <td><a href="{% url 'editPost' post.id %}">Edit</a></td></a>
+                <td><a href="{% url 'removePost' post.id %}">Delete</a></td></a>
+                {% endfor %}
+            </tr>
+        </table>
+    </body>
+</html>

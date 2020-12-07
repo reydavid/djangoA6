@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Edit Post!</h1>
+        <form action="{% url 'editPost' post.id %}" method = "POST">
+            {%csrf_token%}
+            <p>Current value: {{post.post}}</p>
+            <textarea name="post"></textarea>
+            <input type="submit", value="Update">
+        </form>
+        <table>
+            <thead>
+                <th>Post</th>
+                <th>Action</th>
+            </thead>
+
+        {% for post in allPosts %}
+            <td>{{post.post}}</td>    
+            <td><a href="{% url 'postapp:editPost' post.id %}">Edit</a></td></a>
+            <td><a href="{% url 'postapp:removePost' post.id %}">Delete</a></td></a>
+        {% endfor %}
+    </table>
+    </body>
+</html>
